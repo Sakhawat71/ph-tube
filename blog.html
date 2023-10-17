@@ -16,7 +16,8 @@
         <nav class="md:mx-14 mx-2 my-4">
             <div class="navbar bg-base-100">
                 <div class="navbar-start">
-                    <a href="/index.html" class="btn lg:w-1/3 md:w-3/5 w-5/6 hover:bg-white btn-ghost normal-case text-xl"><img
+                    <a href="/index.html"
+                        class="btn lg:w-1/3 md:w-3/5 w-5/6 hover:bg-white btn-ghost normal-case text-xl"><img
                             src="img/Logo.png" alt=""></a>
                 </div>
                 <div>
@@ -28,6 +29,69 @@
             </div>
         </nav>
     </header>
+
+
+    <main class="w-9/12 mx-auto">
+        <div class="collapse ">
+            <input type="checkbox" class="peer" />
+            <div
+                class="collapse-title  text-black peer-checked:bg-secondary peer-checked:text-secondary-content">
+                >> Discuss the scope of var, let, and const
+            </div>
+            <div
+                class="collapse-content text-black peer-checked:bg-secondary peer-checked:text-secondary-content">
+                <p>var: </p>
+                <p>> 'var' has a function-level scope. It means it's accessible within the function where it's declared.</p>
+                <p>> If declared within a function, it's not accessible outside of that function.</p>
+                <p>> If declared outside of any function, it becomes a global variable and is accessible throughout the code.</p>
+                <br>
+                <p>let: </p>
+                <p>> 'let' has a block-level scope, which means it's confined to the block (within curly braces) where it's declared.</p>
+                <p>> It's not accessible outside of the block where it's defined.</p>
+                <br>
+                <p>const: </p>
+                <p>> 'const' also has a block-level scope like let.</p>
+                <p>> It is used for declaring variables whose values should not be reassigned once set.
+                </p>
+            </div>
+        </div>
+        
+
+        <div class="collapse">
+            <input type="checkbox" class="peer" />
+            <div
+                class="collapse-title text-black peer-checked:bg-secondary peer-checked:text-secondary-content">
+                >> Tell us the use cases of 'null' and 'undefined'
+            </div>
+            <div
+                class="collapse-content  text-black peer-checked:bg-secondary peer-checked:text-secondary-content">
+                <p>null: </p>
+                <p>Think of 'null' as a deliberate empty value.</p>
+                <p>You can use 'null' when you want to indicate that a variable or object intentionally has no value, and you assign null to represent this absence of value.
+                </p>
+                <p>It's often used when you want to reset or clear a variable or object, showing that it's intentionally empty.
+                </p>
+                <br>
+                <p>undefined: </p>
+                <p>'undefined' typically means that a variable or object has been declared but hasn't been assigned a value.</p>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+
+
+        <div class="collapse bg-gray-500">
+            <input type="checkbox" class="peer" />
+            <div
+                class="collapse-title bg-gray-500 text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+                >> What do you mean by REST API?
+            </div>
+            <div
+                class="collapse-content bg-gray-500 text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+                <p>hello</p>
+            </div>
+        </div>
+    </main>
 
     <script src="app.js"></script>
 </body>
