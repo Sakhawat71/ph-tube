@@ -20,34 +20,35 @@ const showCategory = (allData) => {
             ${optionBtn.category}
         `;
         showCategoryBtn.addEventListener("click", () => {
-            showVideosByCategory(optionBtn.category_id);
+            getVideos(optionBtn.category_id);
         })
         categorySection.appendChild(showCategoryBtn);
     });
 }
 
 // click button 
-const showVideosByCategory = (id) => {
-    getVideos(id);
-}
+// const showVideosByCategory = (id) => {
+//     getVideos(id);
+// }
 
 // get data for shwo videos all category
 const getVideos = async (id) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
-    // console.log(data);
-    displayVideos(data)
+    console.log(id);
+    displayVideos(data);
 }
 
 
 const displayVideos = (data) => {
 
     const videoContainer = document.getElementById("videos-container");
-    // videoContainer.innerHTML = '';
+    videoContainer.textContent = '';
 
 
     data.data.forEach((video) => {
         const videoCart = document.createElement("div");
+
         videoCart.innerHTML = `
         <div class="card card-compact bg-base-100 shadow-xl ">
                 <figure class="relative h-48"><img class="max-h-48 w-full h-full" src="${video.thumbnail}" />
@@ -77,3 +78,4 @@ const displayVideos = (data) => {
 
 
 getBtnData()
+getVideos('1000')
