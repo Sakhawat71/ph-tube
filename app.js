@@ -33,7 +33,7 @@ const getVideos = async (id, sortByViews = false) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
     if (sortByViews) {
-        sortVideosByViews(data,id);
+        sortVideosByViews(data);
     }
     
     displayVideos(data);
@@ -67,7 +67,7 @@ const displayVideos = (data ) => {
         videoCart.innerHTML = `
         <div class="card card-compact bg-base-100 shadow-xl ">
                 <figure class="relative h-48"><img class="max-h-48 w-full h-full" src="${video.thumbnail}" />
-                <p class="absolute bg-black text-white  bottom-0 right-0 rounded-md px-2 py-1">${convertTime ? convertTime : ''}</p>
+                <p class="absolute bg-black text-white  bottom-0 right-0 rounded-md ">${convertTime ? convertTime : ''}</p>
                 </figure>
                 
                 <div class="card-body flex flex-row gap-3 h-32">
