@@ -1,5 +1,6 @@
 // get button data form api
 const getBtnData = async () => {
+    toggleLoading(true)
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/categories`);
     const data = await res.json();
     const allData = data.data;
@@ -26,29 +27,28 @@ const showCategory = (allData) => {
     });
 }
 
-// click button 
-// const showVideosByCategory = (id) => {
-//     getVideos(id);
-// }
 
 // get data for shwo videos all category
-const getVideos = async (id) => {
+const getVideos = async (id, sortByViews = false) => {
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${id}`);
     const data = await res.json();
-    console.log(id);
+    if (sortByViews) {
+        sortVideosByViews(data,id);
+    }
+    
     displayVideos(data);
 }
 
 
-const displayVideos = (data) => {
+const displayVideos = (data ) => {
 
+    
     const videoContainer = document.getElementById("videos-container");
     const errorMasege = document.getElementById("error")
     videoContainer.textContent = '';
     errorMasege.textContent = '';
 
-    console.log(data)
-    if(data.status === false){
+    if (data.status === false) {
         errorMasege.innerHTML = `
         <div class="text-center mt-10">
                 <img class="mx-auto" src="img/Icon.png" alt="">
@@ -57,13 +57,17 @@ const displayVideos = (data) => {
         `;
     }
 
+
     data.data.forEach((video) => {
+
+        const apiTime = video.others?.posted_date;
+        const convertTime = noZero(apiTime)
         const videoCart = document.createElement("div");
 
         videoCart.innerHTML = `
         <div class="card card-compact bg-base-100 shadow-xl ">
                 <figure class="relative h-48"><img class="max-h-48 w-full h-full" src="${video.thumbnail}" />
-                <p class="absolute bg-black text-white  bottom-0 right-0 rounded-md ">${video.others?.posted_date ? video.others?.posted_date: ""}</p>
+                <p class="absolute bg-black text-white  bottom-0 right-0 rounded-md px-2 py-1">${convertTime ? convertTime : ''}</p>
                 </figure>
                 
                 <div class="card-body flex flex-row gap-3 h-32">
@@ -73,22 +77,39 @@ const displayVideos = (data) => {
                     </div>
                     <div>
                         <h2 class="card-title font-bold">${video.title}</h2>
-                        <p>${video.authors[0].profile_name} ${video.authors[0]?.verified}
-                        <i class="fa-solid fa-certificate" style="color: #3008bf;"></i>
-                        </p>
-                        
+                        <p>${video.authors[0].profile_name} ${video.authors[0]?.verified ? `<i class="fa-solid fa-certificate" style="color: #3008bf;"></i>` : ''}</p>
                         <p>${video.others?.views} views</p>
                     </div>
                 </div>
         </div>
         `;
         videoContainer.appendChild(videoCart);
-
-
-        
-
+        toggleLoading(false);
     })
 }
+
+const toggleLoading = (isLoading) => {
+    const loadingDiv = document.getElementById("loading-infinity-div");
+    if (isLoading) {
+        loadingDiv.classList.remove("hidden");
+    }
+    else {
+        loadingDiv.classList.add("hidden")
+    }
+}
+
+const sortVideosByViews = (data) => {
+    data.data.sort((a, b) => {
+        const viewsA = parseInt(a.others?.views) || 0;
+        const viewsB = parseInt(b.others?.views) || 0;
+        return viewsB - viewsA;
+    });
+}
+
+const sortButton = document.getElementById("sortButton");
+sortButton.addEventListener("click", () => {
+    getVideos('1000',true);
+});
 
 
 

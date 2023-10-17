@@ -22,7 +22,7 @@
                             src="img/Logo.png" alt=""></a>
                 </div>
                 <div>
-                    <button class="btn bg-gray-200">Sort by view</button>
+                    <button  id="sortButton" class="btn bg-gray-200">Sort by view</button>
                 </div>
                 <div class="navbar-end">
                     <a href="/blog.html" class="btn bg-red-600 text-white hover:bg-red-600">Blog</a>
@@ -43,6 +43,10 @@
 
         </section>
 
+        <div id="loading-infinity-div" class="text-center hidden">
+            <span class="loading loading-infinity loading-lg"></span>
+        </div>
+        
         <!-- show videos -->
         <section id="videos-container"
             class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:mx-14 mx-4 my-4">
@@ -62,6 +66,7 @@
 
 
 </body>
-<script src="app.js"></script>
 
+<script src="app.js"></script>
+<script src="math.js"></script>
 </html>
